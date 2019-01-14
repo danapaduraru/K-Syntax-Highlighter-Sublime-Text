@@ -11,7 +11,7 @@ My Principles of Programming Languages project, a syntax highlighter in Sublime 
 
 ### conf1
 
-![alt text]https://i.ibb.co/6Pr9jsB/2.jpg)
+![alt text](https://i.ibb.co/6Pr9jsB/2.jpg)
 
 ### conf2
 
