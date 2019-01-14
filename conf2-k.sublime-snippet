@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+configuration <k> $PGM:Pgm ~> execute </k>
+              <env> .Map </env>
+              <store> .Map </store>
+              <stack> .List </stack>
+              <fstack> .List </fstack>
+              <in stream="stdin"> .List </in>
+              <out stream="stdout"> .List </out>
+]]></content>
+	<tabTrigger>conf2</tabTrigger>
+	<scope>source.k</scope>
+</snippet>

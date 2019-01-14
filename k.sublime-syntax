@@ -1,0 +1,83 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: K
+file_extensions: [k]
+scope: source.k
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: scope:source.c#comments
+
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: keywords
+    - include: numbers
+    - include: strings
+    - include: storage.type
+    - include: flags.k
+    - include: tags.k
+    - include: module.k
+    - include: operators.k
+
+  module.k:
+    - match: '\b(module|endmodule)\b'
+      scope: module.k
+
+  tags.k:
+    - match: '\b(store|env|stack|fstack|stream|in|out|k|prt|next|funs|rand|T|thread|threads|streams)\b'
+      scope: tags.k
+
+  operators.k:
+    - match: '\b(=>|\|->|~>)\b' # Nu merge
+      scope: operators.k
+
+  storage.type:
+    - match: '\b(Bool|Int|Id|String|List|ListItem|KResult|KItem|Map|BagItem|Set|SetItem$PGM)\b'
+      scope: storage.type
+
+  flags.k:
+    - match: '\b(token|left|right|bracket|non-assoc|strict|seqstrict|true|false|function|structural|anywhere|binder|latex)\b'
+      scope: flags.k
+
+  keywords:
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: '\b(syntax|imports|configuration|rule|macro|context|when|require|requires|HOLE|color|multiplicity)\b'
+      scope: keyword.control.k
+
+  numbers:
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.k
+
+  strings:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character.
+    - match: '"'
+      scope: punctuation.definition.string.begin.k
+      push: inside_string
+
+  inside_string:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.k
+    - match: '\.'
+      scope: constant.character.escape.k
+    - match: '"'
+      scope: punctuation.definition.string.end.k
+      pop: true
+
+  comments:
+    # Comments begin with a '//' and finish at the end of the line.
+    - match: '//'
+      scope: punctuation.definition.comment.k
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.k
+        - match: $\n?
+          pop: true

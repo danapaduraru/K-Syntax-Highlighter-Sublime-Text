@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+module $1-SYNTAX
+  
+	
+
+endmodule
+
+module $1
+  imports $1-SYNTAX
+
+
+endmodule
+]]></content>
+	<tabTrigger>start</tabTrigger>
+	<scope>source.k</scope>
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+configuration <k> $PGM:Pgm </k>
+              <env> .Map </env>
+              <store> .Map </store>
+]]></content>
+	<tabTrigger>conf1</tabTrigger>
+	<scope>source.k</scope>
+</snippet>
